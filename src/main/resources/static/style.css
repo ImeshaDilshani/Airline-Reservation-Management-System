@@ -53,7 +53,7 @@ html {
     font-size: 70%;
     overflow-x: hidden;
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 1rem;
 
 }
 
@@ -285,8 +285,10 @@ ul {
     text-align: center;
 }
 
-/*-----------------------*/
 
+
+
+/*-----------------------*/
 
 
 
