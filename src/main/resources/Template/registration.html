@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>JKshian</title>
+
+   <!------Font awesome cdn link-------->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+   <!------CSS file link------->
+   <link rel="stylesheet" href="nah.css">
+
+  
+  
+</head>
+
+<body>
+
+   <!-- header section starts  -->
+
+   <header class="header">
+
+    <a href="index.html" class="logo"><i class="fas fa-plane" aria-hidden="true"></i> JKshian</a>
+ 
+    <nav class="navbar" id="MenuItems">
+         
+             <li><a href="index.html">Home</a></li> 
+             <li><a href="index.html">Booking</a></li>
+             <li><a href="">Packages</a></li>
+             <li><a href="contact.html">contact</a></li>
+         
+    </nav>
+    <a href="login.html" class="login"><img src="images/avatar.svg" width="30px" height="30px"></a>
+    <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
+    </header>
+ 
+
+   <!-----header section ends---->
+
+   <!-----Registration section starts-->
+   
+   <section class="log">
+    <img class="wave" src="images/wave.png">
+    <div class="container">
+        <div class="img">
+            <img src="images/bg.svg">
+        </div>
+        <div class="login-content">
+            <form action="index.html">
+                <img src="images/avatar.svg">
+                <h2 class="title">Get started</h2>
+                   <div class="input-div one">
+                      <div class="i">
+                        <i class="fa-regular fa-user-secret"></i>
+                      </div>
+                      <div class="div">
+                          <input type="text" class="input" placeholder="Full name">
+                      </div>
+                   </div>
+                   <div class="input-div one">
+                    <div class="i">
+                            <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div class="div">
+                        <input type="email" class="input" placeholder="Email address">
+                    </div>
+                 </div>
+                 <div class="input-div one">
+                    <div class="i">
+                        <i class="fa-solid fa-mobile"></i>
+                    </div>
+                    <div class="div">
+                        <input type="text" class="input" placeholder="mobile number">
+                    </div>
+                 </div>
+                   <div class="input-div one">
+                    <div class="i">
+                            <i class="fas fa-user"></i>
+                    </div>
+                    <div class="div">
+                        <input type="text" class="input" placeholder="Username">
+                    </div>
+                 </div>
+                   <div class="input-div pass">
+                      <div class="i"> 
+                           <i class="fas fa-lock"></i>
+                      </div>
+                      <div class="div">
+                         <input type="password" class="input" placeholder="Password">
+                   </div>
+                </div>
+                <input type="submit" class="btn" value="Create an account">
+                 
+        </div>
+    </div>
+ 
+ </section>
+   <!-----Footer section starts----->
+
+
+
+   <div class="footer">
+    
+    <div class="row">
+        <div class="footer-col-1">
+         <h3>About us</h3>
+         <p>Launched in 2023, Sri Lanka’s National Carrier is an award winning airline
+              with a solid reputation for service, comfort, safety, reliability, and punctuality</p>
+        </div>
+        <div class="footer-col-2">
+         <a href="#" class="logo"><i class="fas fa-plane" aria-hidden="true"></i> JKshian</a>
+        </div>
+        <div class="footer-col-3">
+            <h3>Useful Links</h3>
+            <ul>
+                <li>Coupons</li>
+                <li>Blog Post</li>
+                <li>Return Policy</li>
+                <li>Join Affiliate</li>
+            </ul>
+        </div>
+        <div class="footer-col-4">
+            <h3>Follow us</h3>
+            <ul>
+                <li><i class="fa-brands fa-facebook"></i> Facebook</li>
+                <li><i class="fa-brands fa-twitter"></i> Twitter</li>
+                <li><i class="fa-brands fa-instagram"></i> Instagram</li>
+                <li><i class="fa-brands fa-youtube"></i> Youtube</li>
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <p class="copyright">Copyright 2023 - JKshian Airlines</p>
+ </div>
+
+
+ 
+<!-----Footer section ends------->
+
+
+
+
+<!-----Custom js file link----->
+<script>
+     var MenuItems = document.getElementById("MenuItems");
+
+     MenuItems.style.maxHeight = "0px";
+
+     function menutoggle() {
+         if(MenuItems.style.maxHeight == "0px")
+         {
+             MenuItems.style.maxHeight = "200px";
+         }
+         else
+         {
+             MenuItems.style.maxHeight = "0px";
+         }
+     }
+</script>
+
+
+
+
+
+
+
+
+  <!-----Custom js file link----->
+  <script src="js/script.js"></script>
+
+</body>
+
+</html>
