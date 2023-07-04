@@ -1,8 +1,22 @@
 # Airline Reservation Management System
 
-The goal of this project on Airline Management System is to automate the airline registration procedure. The system includes information such as passenger information, flight information, and a list of all passengers, as well as the ability to store and retrieve data linked to the airline business and conduct air travel transactions.The system is able to provide much information like passenger’s details, flight details and the booking details.
+The Airline Reservation Management System is a web-based application that streamlines the process of flight booking and reservation management. It offers a convenient interface for users to search and book flights, check available seats, manage reservations, and handle cancellations. The system also provides airline administrators with tools to manage flights, seat availability, and passenger information.
 
-When a passenger reserves a ticket, the technology also allows us to add records. MySQL Database is used to store and retrieve data. It allows us to add as many records as we want to our database.
+## Features
+- User Registration and Login: Passengers can create accounts and log in to access the reservation system.
+- Flight Search: Users can search for available flights based on their preferred destinations and travel dates.
+- Seat Availability: The system displays seat availability for each flight, allowing users to choose their seats during booking.
+- Booking and Reservation: Passengers can book flights and manage their reservations.
+- Ticket Generation: After successful booking, the system generates electronic tickets for passengers.
+- Admin Dashboard: Airline administrators have access to a dashboard to manage flights, seat availability, and user bookings.
+- Flight Management: Admins can add, update, or remove flights from the system.
+- Reservation Management: Airline staff can manage passenger reservations, including cancellations and modifications.
+
+## Technologies Used
+- Frontend: HTML, CSS, JavaScript
+- Backend: Java Spring Boot
+- Database: MySql
+
 
 ## Authors
 
@@ -14,5 +28,4 @@ When a passenger reserves a ticket, the technology also allows us to add records
 - [Jathurscan](https://github.com/jathurscan99)
 
 ## Feedback
-
-If you have any feedback, please reach out to us at imeshadilshani212@gmail.com
+Thank you for using the Airline Reservation Management System! If you have any questions or feedback, please reach out to us at imeshadilshani212@gmail.com
