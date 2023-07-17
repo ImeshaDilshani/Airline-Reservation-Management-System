@@ -1,5 +1,9 @@
-package com.jkshian.arms.auth;
+package com.jkshian.arms.controller;
 
+import com.jkshian.arms.dto.AuthenticationRequest;
+import com.jkshian.arms.dto.AuthenticationResponse;
+import com.jkshian.arms.dto.RegisterRequest;
+import com.jkshian.arms.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

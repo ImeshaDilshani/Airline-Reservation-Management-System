@@ -1,4 +1,4 @@
-package com.jkshian.arms.auth;
+package com.jkshian.arms.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

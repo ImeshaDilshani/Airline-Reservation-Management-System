@@ -1,5 +1,6 @@
-package com.jkshian.arms.User;
+package com.jkshian.arms.repo;
 
+import com.jkshian.arms.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

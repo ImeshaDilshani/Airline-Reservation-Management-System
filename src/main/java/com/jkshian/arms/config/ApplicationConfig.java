@@ -1,6 +1,6 @@
 package com.jkshian.arms.config;
 
-import com.jkshian.arms.User.UserRepository;
+import com.jkshian.arms.repo.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
