@@ -1,5 +1,6 @@
 package com.jkshian.arms.config;
 
+import com.jkshian.arms.dao.UserDao;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,10 +19,11 @@ import java.io.IOException;
 
 @Component
 @RequiredArgsConstructor
+
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
-    private final UserDetailsService userDetailsService;
+    private final UserDao userDao;
     @Override
     protected void doFilterInternal(
             @NonNull HttpServletRequest request,
@@ -38,7 +40,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         jwt = authHeader.substring(7);
         userEmail = jwtService.extractUsername(jwt);
         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null){
-            UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
+            UserDetails userDetails = this.userDao.findUserByEmail(userEmail);
             if (jwtService.isTokenValid(jwt, userDetails )){
                 UsernamePasswordAuthenticationToken autheToken = new UsernamePasswordAuthenticationToken(
                         userDetails,

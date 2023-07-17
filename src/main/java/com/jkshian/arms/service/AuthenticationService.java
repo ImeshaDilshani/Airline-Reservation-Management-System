@@ -1,9 +1,13 @@
-package com.jkshian.arms.auth;
+package com.jkshian.arms.service;
 
 import com.jkshian.arms.User.Role;
-import com.jkshian.arms.User.User;
-import com.jkshian.arms.User.UserRepository;
+import com.jkshian.arms.dao.UserDao;
+import com.jkshian.arms.entity.User;
+import com.jkshian.arms.repo.UserRepository;
 import com.jkshian.arms.config.JwtService;
+import com.jkshian.arms.dto.AuthenticationRequest;
+import com.jkshian.arms.dto.AuthenticationResponse;
+import com.jkshian.arms.dto.RegisterRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,6 +21,7 @@ public class AuthenticationService {
     private final UserRepository repository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
+    private final UserDao userDao;
 
     private final AuthenticationManager authenticationManager;
 
@@ -36,18 +41,15 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getEmail()
-                )
-        );
+      authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
         var user = repository.findByEmail(request.getEmail())
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
+
+
     }
 }
 

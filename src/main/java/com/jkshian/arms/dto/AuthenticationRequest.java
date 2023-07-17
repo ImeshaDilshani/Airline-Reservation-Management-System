@@ -1,4 +1,4 @@
-package com.jkshian.arms.auth;
+package com.jkshian.arms.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AuthenticationRequest {
     private String email;
-    String password;
+    private String password;
 
 
 }

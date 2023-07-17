@@ -26,6 +26,7 @@ The Airline Reservation Management System is a web-based application that stream
 - [Sanudi](https://github.com/SanudiNim)
 - [Ajintha](https://github.com/AjinthaSivam)
 - [Jathurscan](https://github.com/jathurscan99)
+- [Tharindu Lakshan](https://github.com/Tharindu20010110)
 
 ## Feedback
 Thank you for using the Airline Reservation Management System! If you have any questions or feedback, please reach out to us at imeshadilshani212@gmail.com
