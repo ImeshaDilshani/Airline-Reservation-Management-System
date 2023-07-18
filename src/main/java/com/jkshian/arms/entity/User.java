@@ -1,5 +1,6 @@
-package com.jkshian.arms.User;
+package com.jkshian.arms.entity;
 
+import com.jkshian.arms.User.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
