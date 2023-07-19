@@ -40,23 +40,15 @@ public class AuthenticationController {
         return ResponseEntity.ok(service.register(request));
     }
 
-//    @PostMapping("/authenticate")
-//    public ResponseEntity<AuthenticationResponse> authenticate(
-//            @RequestBody AuthenticationRequest request
-//    ) {
-//        return ResponseEntity.ok(service.authenticate(request));
-//
-//    }
-@PostMapping("/authenticate")
-public ResponseEntity<String> authenticate(@RequestBody  AuthenticationRequest request){
-  authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(),request.getPassword()));
-    final UserDetails user = userDao.findUserByEmail(request.getEmail());
-    if(user != null) {
+     @PostMapping("/authenticate")
+    public ResponseEntity<String> authenticate(@RequestBody  AuthenticationRequest request){
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(),request.getPassword()));
+        final UserDetails user = userDao.findUserByEmail(request.getEmail());
+        if(user != null) {
         return ResponseEntity.ok(jwtService.generateToken(user));
-
+       }
+        return ResponseEntity.status(400).body("Some Error Occurred");
     }
-    return ResponseEntity.status(400).body("Some Error Occurred");
-}
 
 
 

@@ -1,5 +1,8 @@
 package com.jkshian.arms.dao;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -32,4 +35,5 @@ public class UserDao {
                 .findFirst()
                 .orElseThrow(()->new UsernameNotFoundException("No user Was Found"));
     }
+
 }
