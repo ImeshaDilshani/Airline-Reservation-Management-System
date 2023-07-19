@@ -1,6 +1,7 @@
 package com.jkshian.arms.service;
 
 import com.jkshian.arms.User.Role;
+import com.jkshian.arms.dao.UserDao;
 import com.jkshian.arms.entity.User;
 import com.jkshian.arms.repo.UserRepository;
 import com.jkshian.arms.config.JwtService;
@@ -20,6 +21,7 @@ public class AuthenticationService {
     private final UserRepository repository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
+    private final UserDao userDao;
 
     private final AuthenticationManager authenticationManager;
 
@@ -39,14 +41,9 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getPassword()
-                )
-        );
-        var user = repository.findByEmail(request.getEmail())
-                .orElseThrow();
+//        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+        var user = userDao.findUserByEmail(request.getEmail());
+       System.out.println(request.getPassword());
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
