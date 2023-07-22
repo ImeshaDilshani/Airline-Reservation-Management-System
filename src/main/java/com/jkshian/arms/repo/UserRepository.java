@@ -1,6 +1,6 @@
 package com.jkshian.arms.repo;
 
-import com.jkshian.arms.dao.UserDao;
+
 import com.jkshian.arms.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
