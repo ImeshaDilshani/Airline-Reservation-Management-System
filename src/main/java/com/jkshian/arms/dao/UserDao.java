@@ -25,6 +25,8 @@ public class UserDao {
             )
     );
 
+
+
     public  UserDetails findUserByEmail(String email){
         return  APPLICATION_USERS
                 .stream()
@@ -32,4 +34,5 @@ public class UserDao {
                 .findFirst()
                 .orElseThrow(()->new UsernameNotFoundException("No user Was Found"));
     }
+
 }

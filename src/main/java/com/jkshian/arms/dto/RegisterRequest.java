@@ -1,5 +1,6 @@
 package com.jkshian.arms.dto;
 
+import com.jkshian.arms.User.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
