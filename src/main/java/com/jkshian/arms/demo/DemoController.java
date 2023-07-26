@@ -105,5 +105,4 @@ public class DemoController {
         return  bookingService.addBooking(bookingdto);
     }
 
-
 }

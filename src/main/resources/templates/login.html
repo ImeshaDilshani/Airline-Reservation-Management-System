@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>JKshian</title>
+
+   <!------Font awesome cdn link-------->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+   <!------CSS file link------->
+   <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+
+  
+  
+</head>
+
+<body>
+
+   <!-- header section starts  -->
+
+   <header class="header">
+
+   <a href="./notyet.html" class="logo"><i class="fas fa-plane" aria-hidden="true"></i> JKshian</a>
+
+   <nav class="navbar">
+       <a href="#home">Home</a>
+       <a href="#book-form">Booking</a>
+       <a href="">Home</a>
+       <a href="">contact</a>
+
+   </nav>
+   <a href="./login.html" ><img src="../static/images/avatar.svg" th:src="@{/images/avatar.svg}"  width="30px" height="30px"></a>
+   </header>
+<section class="log">
+   <img class="wave" src="../static/images/wave.png"  th:src="@{/images/wave.png}">
+   <div class="container">
+       <div class="img">
+           <img src="../static/images/bg.svg"  th:src="@{/images/bg.svg}">
+       </div>
+       <div class="login-content">
+           <form id="loginForm">
+               <img src="../static/images/avatar.svg" th:src="@{/images/avatar.svg}">
+               <h2 class="title">Welcome</h2>
+                  <div class="input-div one">
+                     <div class="i">
+                             <i class="fas fa-user"></i>
+                     </div>
+                     <div class="div">
+                             <h5>Username</h5>
+                             <input type="text" id="username" name="username">
+                     </div>
+                  </div>
+                  <div class="input-div pass">
+                     <div class="i">
+                          <i class="fas fa-lock"></i>
+                     </div>
+                     <div class="div">
+                          <h5>Password</h5>
+                          <input type="password" id="password" name="password">
+                  </div>
+               </div>
+               <a href="#">Forgot Password?</a>
+               <input type="submit" class="btn" value="Login">
+                <a href="./registration.html" class="sign">Sign Up</a>
+               <div id="error-message"></div>
+               <div id="loading-indicator" style="display: none;">Logging in...</div>
+           </form>
+       </div>
+   </div>
+
+
+</section>
+
+   
+
+
+  <!-----Footer section starts----->
+
+
+
+  <div class="footer">
+    
+    <div class="row">
+        <div class="footer-col-1">
+            <h3>Download Our App</h3>
+            <p>Download App for Android and jos mobile phone.</p>
+            <div class="app-logo">
+                <img src="images/play-store.png"  th:src="@{/images/play-store.png}" >
+                <img src="images/app-store.png" th:src="@{/images/app-store.png}">
+            </div>
+        </div>
+        <div class="footer-col-2">
+         <a href="#" class="logo"><i class="fas fa-plane" aria-hidden="true"></i> JKshian</a>
+        </div>
+        <div class="footer-col-3">
+            <h3>Useful Links</h3>
+            <ul>
+                <li>Coupons</li>
+                <li>Blog Post</li>
+                <li>Return Policy</li>
+                <li>Join Affiliate</li>
+            </ul>
+        </div>
+        <div class="footer-col-4">
+            <h3>Follow us</h3>
+            <ul>
+                <li><i class="fas fa-facebook-f"></i> Facebook</li>
+                <li><i class="fa-brands fa-twitter"></i> Twitter</li>
+                <li><i class="fa-brands fa-instagram"></i> Instagram</li>
+                <li><i class="fa-brands fa-youtube"></i> Youtube</li>
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <p class="copyright">Copyright 2023 - JKshian Airlines</p>
+ </div>
+
+
+ 
+<!-----Footer section ends------->
+
+
+
+
+
+
+<!-----Custom js file link----->
+<script type="text/javascript" >
+
+    function handleFormSubmit(event) {
+        event.preventDefault();
+
+        const formData = {
+            email: document.getElementById('username').value,
+            password: document.getElementById('password').value,
+            // Add more form fields here as needed
+        };
+
+        const errorMessage = document.getElementById('error-message');
+        const loadingIndicator = document.getElementById('loading-indicator');
+
+        errorMessage.textContent = ''; // Clear any previous error message
+        loadingIndicator.style.display = 'block'; // Show loading indicator
+
+        fetch('http://localhost:8080/api/v1/auth/authenticate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const jwtToken = data.token;
+
+                // Store the JWT token in localStorage
+                localStorage.setItem('jwtToken', jwtToken);
+
+                // Navigate to the new page once the user is authenticated
+                window.location.href = 'http://localhost:8080/api/v1/auth/index';
+            })
+            .catch(error => {
+                errorMessage.textContent = 'Login failed. Please check your credentials.';
+                console.error('Error:', error.message);
+            })
+            .finally(() => {
+                loadingIndicator.style.display = 'none'; // Hide loading indicator
+            });
+    }
+
+    const loginForm = document.getElementById('loginForm');
+    loginForm.addEventListener('submit', handleFormSubmit);
+</script>
+
+</body>
+
+</html>

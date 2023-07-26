@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.w3.org/1999/xhtml" >
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>JKshian</title>
 
   <!------Font awesome cdn link-------->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 
   <!------CSS file link------->
-  <link rel="stylesheet" href="static/style.css">
+  <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css">
 
 
 
@@ -31,7 +30,7 @@
     <a href="">contact</a>
 
   </nav>
-  <a href="login.html" ><img src="img/avatar.svg" width="30px" height="30px"></a>
+  <a href="login.html" ><img src="../static/images/avatar.svg" th:src="@{/images/avatar.svg}" width="30px" height="30px"/></a>
 </header>
 
 <!-----header section ends---->
@@ -42,7 +41,7 @@
 
   <div class="home-slider">
     <div class="slide">
-      <div class="box" style="background: url(static/images/bg.png) no-repeat;">
+      <div class="box" >
         <div class="content">
 
           <h3>Fly with us</h3>
@@ -177,7 +176,9 @@
 
 
 <!-----Custom js file link----->
-<script src="js/script.js"></script>
+<script src="js/script.js">
+
+</script>
 
 </body>
 
