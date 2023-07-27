@@ -22,7 +22,7 @@
 
    <header class="header">
 
-   <a href="http://localhost:8080/api/v1/auth/index" class="logo"><i class="fas fa-plane" aria-hidden="true"></i> JKshian</a>
+   <a href="#" class="logo"><i class="fas fa-plane" aria-hidden="true"></i> JKshian</a>
 
    <nav class="navbar">
        <a href="#home">Home</a>
@@ -163,8 +163,8 @@
                 // Store the JWT token in localStorage
                 localStorage.setItem('jwtToken', jwtToken);
 
-                // Navigate to the new page once the user is authenticated
-                window.location.href = 'http://localhost:8080/api/v1/auth/index';
+                redirectToProtectedPage();
+
             })
             .catch(error => {
                 errorMessage.textContent = 'Login failed. Please check your credentials.';
@@ -174,9 +174,45 @@
                 loadingIndicator.style.display = 'none'; // Hide loading indicator
             });
     }
+    function redirectToProtectedPage() {
+        // Check if the JWT token is available in localStorage
+        const jwtToken = localStorage.getItem('jwtToken');
+        if (jwtToken) {
+            fetch('http://localhost:8080/api/v1/demo-controller/index', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${jwtToken}`,
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => {
+                    if (response.ok) {
+                        // Redirect to the protected page
+                        // window.location.href = 'path/to/protected_page.html';
+                        return response.text();
+                    } else {
+                        // Handle other response statuses here, if needed
+                        console.error('Error:', response.status, response.statusText);
+                    }
+                })
+                .then(htmlContent => {
+                    // Render the HTML content in the current page
+                    document.body.innerHTML = htmlContent;
+                })
+                .catch(error => {
+                    console.error('Error:', error.message);
+                    // Handle errors here
+                });
+        } else {
+            // If token is not available, redirect back to the login page
+            window.location.href = 'http://localhost:8080/api/v1/auth/login';
+        }
+    }
 
     const loginForm = document.getElementById('loginForm');
     loginForm.addEventListener('submit', handleFormSubmit);
+
+
 </script>
 
 </body>

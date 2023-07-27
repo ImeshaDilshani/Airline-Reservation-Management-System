@@ -12,11 +12,12 @@ import com.jkshian.arms.service.PlaneService;
 import com.jkshian.arms.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/api/v1/demo-controller")
 public class DemoController {
 
@@ -33,6 +34,10 @@ public class DemoController {
         this.bookingService = bookingService;
     }
 
+    @GetMapping("/index")
+    public String index(){
+        return "index";
+    }
     // Admin only can access this method
     @PostMapping("/admin/addplane")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")

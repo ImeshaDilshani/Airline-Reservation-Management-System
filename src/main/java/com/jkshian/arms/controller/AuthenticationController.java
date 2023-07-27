@@ -18,11 +18,6 @@ public class AuthenticationController {
     private final AuthenticationService service;
 
 
-    @GetMapping("/index")
-    public String index(){
-        return "index";
-    }
-
     @GetMapping("/login")
     public String login(){
         return "login";
