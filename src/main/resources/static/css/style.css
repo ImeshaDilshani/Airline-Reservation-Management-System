@@ -148,7 +148,7 @@ html {
     box-shadow: 0 .5rem 1rem rgba(17, 17, 17, .3);
     border: .2rem solid #008000;
     padding: 4rem 5rem;
-    background-image: url(/static/images/greencopy.png);
+    background-image: url("../images/greencopy.png");
     background-size: cover;
 
 

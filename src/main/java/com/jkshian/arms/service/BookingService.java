@@ -65,7 +65,7 @@ public class BookingService {
                findPlane.setAvlSeat(findPlane.getAvlSeat() - bookingdto.getBnumofseat());
                planeRepo.save(findPlane);
            }else {
-              return ResponseEntity.status(401).body("Seats Are not Avilable");
+              return ResponseEntity.status(401).body("Seats Are not Available");
            }
            return ResponseEntity.ok("We recoded your booking");
         }else {
