@@ -10,7 +10,7 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 
    <!------CSS file link------->
-   <link rel="stylesheet" href="nah.css">
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
 
   
   
@@ -22,7 +22,7 @@
 
    <header class="header">
 
-    <a href="index.html" class="logo"><i class="fas fa-plane" aria-hidden="true"></i> JKshian</a>
+    <a href="http://localhost:8080/api/v1/auth/index" class="logo"><i class="fas fa-plane" aria-hidden="true"></i> JKshian</a>
  
     <nav class="navbar" id="MenuItems">
          
@@ -32,8 +32,8 @@
              <li><a href="contact.html">contact</a></li>
          
     </nav>
-    <a href="login.html" class="login"><img src="images/avatar.svg" width="30px" height="30px"></a>
-    <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
+    <a href="http://localhost:8080/api/v1/auth/login" class="login"><img src="../static/images/avatar.svg" th:src="@{/images/avatar.svg}" width="30px" height="30px"></a>
+    <img src="../static/images/menu.png" th:src="@{/images/menu.png}" class="menu-icon">
     </header>
  
 
@@ -42,56 +42,51 @@
    <!-----Registration section starts-->
    
    <section class="log">
-    <img class="wave" src="images/wave.png">
+    <img class="wave" src="../static/images/wave.png" th:src="@{/images/wave.png}">
     <div class="container">
         <div class="img">
-            <img src="images/bg.svg">
+            <img src="../static/images/bg.svg" th:src="@{/images/bg.svg}">
         </div>
         <div class="login-content">
-            <form action="index.html">
-                <img src="images/avatar.svg">
+            <form id="registrationForm">
+                <img src="../static/images/avatar.svg" th:src="@{/images/avatar.svg}">
                 <h2 class="title">Get started</h2>
                    <div class="input-div one">
                       <div class="i">
-                        <i class="fa-regular fa-user-secret"></i>
+                        <i class="fas fa-user"></i>
                       </div>
                       <div class="div">
-                          <input type="text" class="input" placeholder="Full name">
+                          <input type="text" class="input" id="firstname" placeholder="First name">
                       </div>
                    </div>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="div">
+                        <input type="text" class="input" id="lastname" placeholder="Last name">
+                    </div>
+                </div>
                    <div class="input-div one">
                     <div class="i">
                             <i class="fa-solid fa-envelope"></i>
                     </div>
                     <div class="div">
-                        <input type="email" class="input" placeholder="Email address">
+                        <input type="email" class="input" id="email" placeholder="Email address">
                     </div>
                  </div>
-                 <div class="input-div one">
-                    <div class="i">
-                        <i class="fa-solid fa-mobile"></i>
-                    </div>
-                    <div class="div">
-                        <input type="text" class="input" placeholder="mobile number">
-                    </div>
-                 </div>
-                   <div class="input-div one">
-                    <div class="i">
-                            <i class="fas fa-user"></i>
-                    </div>
-                    <div class="div">
-                        <input type="text" class="input" placeholder="Username">
-                    </div>
-                 </div>
+
                    <div class="input-div pass">
                       <div class="i"> 
                            <i class="fas fa-lock"></i>
                       </div>
                       <div class="div">
-                         <input type="password" class="input" placeholder="Password">
+                         <input type="password" class="input" id="password" placeholder="Password">
                    </div>
                 </div>
-                <input type="submit" class="btn" value="Create an account">
+                <input type="submit" class="btn" value="Create an account" >
+                <div id="error-message"></div>
+                <div id="loading-indicator" style="display: none;">Registering...</div>
             </form>
         </div>
     </div>
@@ -138,27 +133,65 @@
 
  
 <!-----Footer section ends------->
+   <script type="text/javascript" >
+
+       function handleFormSubmit(event) {
+           event.preventDefault();
+
+           const formData = {
+               firstname: document.getElementById('firstname').value,
+               lastname: document.getElementById('lastname').value,
+               email: document.getElementById('email').value,
+               password: document.getElementById('password').value,
+               // Add more form fields here as needed
+           };
+
+           const errorMessage = document.getElementById('error-message');
+           const loadingIndicator = document.getElementById('loading-indicator');
+
+           errorMessage.textContent = ''; // Clear any previous error message
+           loadingIndicator.style.display = 'block'; // Show loading indicator
+
+           fetch('http://localhost:8080/api/v1/auth/register', {
+               method: 'POST',
+               headers: {
+                   'Content-Type': 'application/json',
+               },
+               body: JSON.stringify(formData),
+           })
+               .then(response => {
+                   if (!response.ok) {
+                       throw new Error('Network response was not ok');
+                   }
+                   return response.json();
+               })
+               .then(data => {
+                   const jwtToken = data.token;
+
+                   // Store the JWT token in localStorage
+                   localStorage.setItem('jwtToken', jwtToken);
+
+                   // Navigate to the new page once the user is authenticated
+                   window.location.href = 'http://localhost:8080/api/v1/auth/index';
+               })
+               .catch(error => {
+                   errorMessage.textContent = 'Registration failed. Please check your credentials.';
+                   console.error('Error:', error.message);
+               })
+               .finally(() => {
+                   loadingIndicator.style.display = 'none'; // Hide loading indicator
+               });
+       }
+
+       const loginForm = document.getElementById('registrationForm');
+       loginForm.addEventListener('submit', handleFormSubmit);
+   </script>
 
 
 
 
 <!-----Custom js file link----->
-<script>
-     var MenuItems = document.getElementById("MenuItems");
 
-     MenuItems.style.maxHeight = "0px";
-
-     function menutoggle() {
-         if(MenuItems.style.maxHeight == "0px")
-         {
-             MenuItems.style.maxHeight = "200px";
-         }
-         else
-         {
-             MenuItems.style.maxHeight = "0px";
-         }
-     }
-</script>
 
 
 

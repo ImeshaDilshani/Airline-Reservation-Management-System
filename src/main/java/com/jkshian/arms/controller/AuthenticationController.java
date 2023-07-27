@@ -23,10 +23,13 @@ public class AuthenticationController {
         return "index";
     }
 
-    @GetMapping("/")
+    @GetMapping("/login")
     public String login(){
         return "login";
     }
+
+    @GetMapping("/registration")
+    public String registration() { return "registration";}
 
 
     @PostMapping("/register")
