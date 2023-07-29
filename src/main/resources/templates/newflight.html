@@ -48,69 +48,60 @@ position: relative;
 		
 	</style>
 	<body data-spy="scroll" data-target="#myscroll">
-		<div class="wrapper">
-			<div class="sidebar" data-color="green" data-image="assets/img/sb2.jpeg">
-		
-				<div class="sidebar-wrapper">
-					<div class="logo">
-						<a href="https://github.com/ImeshaDilshani/Airline-Reservation-Management-System.git" class="simple-text">
-							JKshian
-						</a>
-					</div>
-		
-					<ul class="nav">
-						<li class="active">
-							<a href="dashboard.html">
-								<i class="pe-7s-graph"></i>
-								<p>dashboard</p>
-							</a>
-						</li>
-						
-						<li>
-							<a href="passenger.html">
-								<i class="pe-7s-users"></i>
-								<p>Passengers</p>
-							</a>
-						</li>
-						<li>
-							<a href="flights.html">
-								<i class="pe-7s-plane"></i>
-								<p>Flights</p>
-							</a>
-						</li>
-						<li>
-							<a href="paymentinfo.html">
-								<i class="pe-7s-cash"></i>
-								<p>Payments</p>
-							</a>
-						</li>
-						<li>
-							<a href="maps.html">
-								<i class="pe-7s-map-marker"></i>
-								<p>Maps</p>
-							</a>
-						</li>
-						<li>
-							<a href="notifications.html">
-								<i class="pe-7s-bell"></i>
-								<p>Notifications</p>
-							</a>
-						</li>
-						<li>
-							<a href="setting.html">
-								<i class="pe-7s-settings"></i>
-								<p>Setting</p>
-							</a>
-						</li>
-						<li class="active-pro">
-							<a href="user.html">
-								<i class="pe-7s-rocket"></i>
-								<p>Log Out</p>
-							</a>
-						</li>
-					</ul>
+	<div class="wrapper">
+		<div class="sidebar" data-color="green" data-image="../static/images/sb2.jpeg" th:data-image="@{/images/sb2.jpeg}" >
+
+			<div class="sidebar-wrapper">
+				<div class="logo">
+					<a href="https://github.com/ImeshaDilshani/Airline-Reservation-Management-System.git" class="simple-text">
+						<i class="fas fa-plane" aria-hidden="true"></i>
+						JKshian
+					</a>
 				</div>
-			</div>			
+
+				<ul class="nav">
+					<li class="active">
+						<a href="dashboard.html">
+							<i class="pe-7s-graph"></i>
+							<p>dashboard</p>
+						</a>
+					</li>
+
+					<li>
+						<a href="passenger.html">
+							<i class="pe-7s-users"></i>
+							<p>Passengers</p>
+						</a>
+					</li>
+					<li>
+						<a href="flights.html">
+							<i class="pe-7s-plane"></i>
+							<p>Flights</p>
+						</a>
+					</li>
+					<li>
+						<a href="paymentinfo.html">
+							<i class="pe-7s-cash"></i>
+							<p>Payments</p>
+						</a>
+					</li>
+
+					<li>
+						<a href="notifications.html">
+							<i class="pe-7s-bell"></i>
+							<p>Notifications</p>
+						</a>
+					</li>
+
+					<li class="active-pro">
+						<a href="user.html">
+							<i class="pe-7s-rocket"></i>
+							<p>Log Out</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
 	
 <div class="main-panel">
 <nav class="navbar navbar-default navbar-fixed">
@@ -352,9 +343,6 @@ position: relative;
 																<input type="text" class="form-control" placeholder="add new features">
 															</div>
 														</div>
-													
-
-
 												</div>
 									      	</div>
 									    </div>
@@ -366,28 +354,26 @@ position: relative;
 								<!--button-->
 								<br>
 								<div style="text-align: right;">
-									<button type="submit" class="btn btn-primary" style="background-color: green;"><a href="flights.html" style="color: white"><i class="fa fa-plus"></i> Add</a></button>
+									<button type="submit" class="btn btn-primary" style="background-color: green;">
+										<a href="flights.html" style="color: white">
+											<i class="fa fa-plus">
+											</i> Add</a></button>
 								</div>
 					    	</div>
-
 </form>
-
-
 						</div>
 					</div>
 				</div>
 			</div>
-			<footer class="footer">
-				<div class="container-fluid">
-					<p class="copyright pull-right">
-						&copy; <script>document.write(new Date().getFullYear())</script> <a href="https://github.com/ImeshaDilshani/Airline-Reservation-Management-System.git">JKshian</a>, Connecting People, Places, And Cultures.
-					</p>
-				</div>
-			</footer>
-			  
 	</div>
-	
-	  
+	</div>
+	<footer class="footer">
+		<div class="container-fluid">
+			<p class="copyright pull-right">
+				&copy; <script>document.write(new Date().getFullYear())</script> <a href="https://github.com/ImeshaDilshani/Airline-Reservation-Management-System.git">JKshian</a>, Connecting People, Places, And Cultures.
+			</p>
+		</div>
+	</footer>
 	</body>
 
 </html>

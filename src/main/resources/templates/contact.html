@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.w3.org/1999/xhtml" >
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>JKshian</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JKshian</title>
 
-   <!------Font awesome cdn link-------->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <!------Font awesome cdn link-------->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 
-   <!------CSS file link------->
-   <link rel="stylesheet" href="nah.css">
+    <!------CSS file link------->
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
 
-  
-  
+
+
 </head>
 
 <body>
@@ -30,7 +30,8 @@
              <li><a href="index.html">Booking</a></li>
              <li><a href="">Packages</a></li>
              <li><a href="contact.html">contact</a></li>
-             <a href="login.html" class="login"><img src="images/avatar.svg" width="30px" height="30px"></a>
+
+             <a href="login.html" class="login"><img src="../static/images/avatar.svg" th:src="@{/images/avatar.svg}"  width="30px" height="30px"></a>
     </nav>
     
     <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">

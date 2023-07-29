@@ -32,7 +32,7 @@
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-color="green" data-image="assets/img/sb2.jpeg">
+    <div class="sidebar" data-color="green" data-image="../static/images/sb2.jpeg" th:data-image="@{/images/sb2.jpeg}" >
 
     	<div class="sidebar-wrapper">
             <div class="logo">
@@ -67,24 +67,14 @@
                         <p>Payments</p>
                     </a>
                 </li>
-                <li>
-                    <a href="maps.html">
-                        <i class="pe-7s-map-marker"></i>
-                        <p>Maps</p>
-                    </a>
-                </li>
+
                 <li>
                     <a href="notifications.html">
                         <i class="pe-7s-bell"></i>
                         <p>Notifications</p>
                     </a>
                 </li>
-                <li>
-                    <a href="setting.html">
-                        <i class="pe-7s-settings"></i>
-                        <p>Setting</p>
-                    </a>
-                </li>
+
 				<li class="active-pro">
                     <a href="user.html">
                         <i class="pe-7s-rocket"></i>
@@ -210,17 +200,15 @@
                 </div>
             </div>
         </div>
-        
-        <footer class="footer">
-            <div class="container-fluid">
-                <p class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script> <a href="https://github.com/ImeshaDilshani/Airline-Reservation-Management-System.git">JKshian</a>, Connecting People, Places, And Cultures.
-                </p>
-            </div>
-        </footer>
-
     </div>
-</div>
+<footer class="footer">
+    <div class="container-fluid">
+        <p class="copyright pull-right">
+            &copy; <script>document.write(new Date().getFullYear())</script> <a href="https://github.com/ImeshaDilshani/Airline-Reservation-Management-System.git">JKshian</a>, Connecting People, Places, And Cultures.
+        </p>
+    </div>
+</footer>
+
 
 
 </body>
@@ -244,21 +232,6 @@
         <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
         <script src="../static/js/demo.js" src="@{/js/demo.js}"></script>
 
-	<script type="text/javascript">
-    	$(document).ready(function(){
 
-        	demo.initChartist();
-
-        	$.notify({
-            	icon: 'pe-7s-gift',
-            	message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
-
-            },{
-                type: 'info',
-                timer: 4000
-            });
-
-    	});
-	</script>
 
 </html>
