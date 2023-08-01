@@ -45,7 +45,7 @@ public class BookingService {
     }
 
     private double calculatePrice(double numOfKm, int bnumOfseat) {
-         double pricePerKm = 10000.00;
+        double pricePerKm = 10000.00;
         return numOfKm*bnumOfseat*pricePerKm;
     }
 
@@ -72,6 +72,4 @@ public class BookingService {
             return ResponseEntity.status(401).body("The plane is not found");
         }
     }
-
-
 }

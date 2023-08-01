@@ -36,8 +36,10 @@ public class DemoController {
 
     @GetMapping("/index")
     public String index(){
-        return "index";
+        return "User/index";
     }
+
+
     // Admin only can access this method
     @PostMapping("/admin/addplane")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
