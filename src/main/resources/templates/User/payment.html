@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Airline Reservation Payment</title>
+  <link rel="stylesheet" href="../../static/css/payment.css">
+</head>
+<body style="background-image: url('../../static/images/bg.png')">
+  <div class="container">
+    <h1>Payment Information</h1>
+    <div class="booking-details">
+      <h2>Booking Details</h2>
+      <p><strong>Airplane Type:</strong> <span id="airplane-type"></span></p>
+      <p><strong>Departure Time:</strong> <span id="departure-time"></span></p>
+      <p><strong>Start Place:</strong> <span id="start-place"></span></p>
+      <p><strong>Destination:</strong> <span id="destination"></span></p>
+      <p><strong>No. of Tickets:</strong> <span id="ticket-count"></span></p>
+      <p><strong>Ticket Numbers:</strong> <span id="ticket-numbers"></span></p>
+      <p><strong>Ticket Price:</strong> <span id="ticket-price"></span></p>
+    </div>
+    <div class="payment-method">
+      <h2>Payment Method</h2>
+      <form id="payment-form">
+        <label for="card-holder">Card Holder's Name</label>
+        <input type="text" id="card-holder" required>
+
+        <label for="card-number">Card Number</label>
+        <input type="text" id="card-number" required>
+
+        <label for="expiry-date">Expiry Date</label>
+        <input type="text" id="expiry-date" placeholder="MM/YY" required>
+
+        <label for="cvv">CVV</label>
+        <input type="text" id="cvv" required>
+
+        <button class = "buttonsub" type="submit">Pay Now</button>
+      </form>
+    </div>
+  </div>
+
+
+  <script src="../../static/js/payment.js"></script>
+</body>
+</html>

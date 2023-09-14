@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flight Details and Ticket Selection</title>
+  <link rel="stylesheet" href="../../static/css/ticket.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body style="background-image: url('../../static/images/selectpage01.jpeg')">
+  <div class="container">
+    <h1>Flight Details</h1>
+    <div class="flight-details">
+      <p><strong>Flight Name:</strong> <span id="displayFlightName"></span></p>
+      <p><strong>Flight Route:</strong> <span id="displayFlightRoute"></span></p>
+      <p><strong>Flight Time:</strong> <span id="displayFlightTime"></span></p>
+
+    <div class="ticket-selection">
+      <h2>Ticket Selection</h2>
+      <form id="ticket-selection-form" action="payment.html" method="get">
+        <label for="ticket-type">Ticket Type:</label>
+        <select id="ticket-type" required>
+          <option value="economy">Economy Class</option>
+          <option value="business">Business Class</option>
+        </select>
+        <label for="ticket-count">Number of Tickets:</label>
+        <input type="number" id="ticket-count" min="1" value="1" required>
+        <button type="submit">Proceed to Payment</button>
+      </form>
+    </div>
+  </div>
+  <script src="../../static/js/ticket.js"></script>
+  </body>
+</html>

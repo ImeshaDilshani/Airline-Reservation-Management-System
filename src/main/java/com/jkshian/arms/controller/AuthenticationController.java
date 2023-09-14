@@ -23,13 +23,12 @@ public class AuthenticationController {
     }
 
     @GetMapping("/registration")
-    public String registration() { return "User/registration";}
+    public String registration() {
+        return "User/registration";}
 
 
     @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> registerUser(
-            @RequestBody RegisterRequest request
-    ){
+    public ResponseEntity<AuthenticationResponse> registerUser(@RequestBody RegisterRequest request){
         return  ResponseEntity.ok(service.registerUser(request));
     }
 

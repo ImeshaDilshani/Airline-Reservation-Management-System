@@ -11,25 +11,15 @@
 
    <!------CSS file link------->
    <link rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}">
-
-  
-  
 </head>
-
 <body>
-
    <!-- header section starts  -->
-
    <header class="header">
-
    <a href="#" class="logo"><i class="fas fa-plane" aria-hidden="true"></i> JKshian</a>
-
    <nav class="navbar">
-       <a href="#home">Home</a>
-       <a href="#book-form">Booking</a>
-       <a href="">Home</a>
-       <a href="">contact</a>
-
+       <a href="index.html">Home</a>
+       <a href="index.html">Booking</a>
+       <a href="contact.html">contact</a>
    </nav>
    <a href="http://localhost:8080/api/v1/auth/login" >
        <img src="../../static/images/avatar.svg" th:src="@{/images/avatar.svg}" width="30px" height="30px"></a>
@@ -49,7 +39,6 @@
                              <i class="fas fa-user"></i>
                      </div>
                      <div class="div">
-
                              <input type="text" id="username" placeholder="email">
                      </div>
                   </div>
@@ -58,7 +47,6 @@
                           <i class="fas fa-lock"></i>
                      </div>
                      <div class="div">
-
                           <input type="password" id="password" placeholder="password">
                   </div>
                </div>
@@ -70,19 +58,10 @@
            </form>
        </div>
    </div>
-
-
 </section>
 
-   
-
-
   <!-----Footer section starts----->
-
-
-
   <div class="footer">
-    
     <div class="row">
         <div class="footer-col-1">
             <h3>Download Our App</h3>
@@ -117,15 +96,7 @@
     <hr>
     <p class="copyright">Copyright 2023 - JKshian Airlines</p>
  </div>
-
-
- 
 <!-----Footer section ends------->
-
-
-
-
-
 
 <!-----Custom js file link----->
 <script type="text/javascript" >
@@ -209,13 +180,8 @@
             window.location.href = 'http://localhost:8080/api/v1/auth/login';
         }
     }
-
     const loginForm = document.getElementById('loginForm');
     loginForm.addEventListener('submit', handleFormSubmit);
-
-
 </script>
-
 </body>
-
 </html>

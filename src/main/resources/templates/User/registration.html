@@ -8,39 +8,24 @@
 
    <!------Font awesome cdn link-------->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-
    <!------CSS file link------->
     <link rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}">
-
-  
-  
 </head>
-
 <body>
-
    <!-- header section starts  -->
-
    <header class="header">
-
     <a href="http://localhost:8080/api/v1/auth/index" class="logo"><i class="fas fa-plane" aria-hidden="true"></i> JKshian</a>
- 
     <nav class="navbar" id="MenuItems">
-         
              <li><a href="index.html">Home</a></li>
              <li><a href="index.html">Booking</a></li>
-             <li><a href="">Packages</a></li>
              <li><a href="contact.html">contact</a></li>
-         
     </nav>
     <a href="http://localhost:8080/api/v1/auth/login" class="login"><img src="../../static/images/avatar.svg" th:src="@{/images/avatar.svg}" width="30px" height="30px"></a>
     <img src="../../static/images/menu.png" th:src="@{/images/menu.png}" class="menu-icon">
     </header>
- 
-
    <!-----header section ends---->
 
    <!-----Registration section starts-->
-   
    <section class="log">
     <img class="wave" src="../../static/images/wave.png" th:src="@{/images/wave.png}">
     <div class="container">
@@ -75,7 +60,6 @@
                         <input type="email" class="input" id="email" placeholder="Email address">
                     </div>
                  </div>
-
                    <div class="input-div pass">
                       <div class="i"> 
                            <i class="fas fa-lock"></i>
@@ -92,12 +76,9 @@
     </div>
  
  </section>
+
    <!-----Footer section starts----->
-
-
-
    <div class="footer">
-    
     <div class="row">
         <div class="footer-col-1">
          <h3>About us</h3>
@@ -130,14 +111,10 @@
     <p class="copyright">Copyright 2023 - JKshian Airlines</p>
  </div>
 
-
- 
 <!-----Footer section ends------->
    <script type="text/javascript" >
-
        function handleFormSubmit(event) {
            event.preventDefault();
-
            const formData = {
                firstname: document.getElementById('firstname').value,
                lastname: document.getElementById('lastname').value,
@@ -145,13 +122,10 @@
                password: document.getElementById('password').value,
                // Add more form fields here as needed
            };
-
            const errorMessage = document.getElementById('error-message');
            const loadingIndicator = document.getElementById('loading-indicator');
-
            errorMessage.textContent = ''; // Clear any previous error message
            loadingIndicator.style.display = 'block'; // Show loading indicator
-
            fetch('http://localhost:8080/api/v1/auth/register', {
                method: 'POST',
                headers: {
@@ -220,20 +194,5 @@
        const loginForm = document.getElementById('registrationForm');
        loginForm.addEventListener('submit', handleFormSubmit);
    </script>
-
-
-
-
-<!-----Custom js file link----->
-
-
-
-
-
-
-  <!-----Custom js file link----->
-
-
 </body>
-
 </html>

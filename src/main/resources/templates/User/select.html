@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flight Choosing Page</title>
+  <link rel="stylesheet" href="../../static/css/select.css">
+  
+</head>
+<body style="background-image: url('../../static/images/selectpage01.jpeg')">
+  <div class="container">
+    <h1 >Choose Your Flight</h1>
+    <form id="flight-chooser-form" action="ticket.html" method="get">
+      <div class="flight-option" >
+       
+      <label>
+          <input type="radio" name="flight" value="flight1">
+          <span class="flight-name">Flight A</span>
+          <span class="flight-route">Route A</span>
+          <span class="flight-time">10:00 AM</span>
+      </label>
+      </div>
+      <div class="flight-option">
+        
+        <label>
+          <input type="radio" name="flight" value="flight2">
+          <span class="flight-name">Flight B</span>
+          <span class="flight-route">Route B</span>
+          <span class="flight-time">11:00 AM</span>
+      </label>
+      </div>
+      <!-- Add more flight options here -->
+     
+      <button class = "buttonsub" type="submit" >Select Flight </button>
+    </form>
+  </div>
+  <script src="../../static/js/select.js"></script>
+</body>
+</html>

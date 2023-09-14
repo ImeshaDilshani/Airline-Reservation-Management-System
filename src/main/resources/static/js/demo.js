@@ -61,14 +61,14 @@ demo = {
           showPoint: false,
         };
 
-        var responsiveSales = [
-          ['screen and (max-width: 640px)', {
-            axisX: {
-              labelInterpolationFnc: function (value) {
-                return value[0];
-              }
-            }
-          }]
+        const responsiveSales = [
+            ['screen and (max-width: 640px)', {
+                axisX: {
+                    labelInterpolationFnc: function (value) {
+                        return value[0];
+                    }
+                }
+            }]
         ];
 
         Chartist.Line('#chartHours', dataSales, optionsSales, responsiveSales);
