@@ -1,29 +1,13 @@
-/*!
 
- =========================================================
- * Light Bootstrap Dashboard - v1.4.0
- =========================================================
+let transparent = true;
 
- * Product Page: http://www.creative-tim.com/product/light-bootstrap-dashboard
- * Copyright 2017 Creative Tim (http://www.creative-tim.com)
- * Licensed under MIT (https://github.com/creativetimofficial/light-bootstrap-dashboard/blob/master/LICENSE.md)
+const transparentDemo = true;
+const fixedTop = false;
 
- =========================================================
-
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
- */
-
-var searchVisible = 0;
-var transparent = true;
-
-var transparentDemo = true;
-var fixedTop = false;
-
-var navbar_initialized = false;
+let navbar_initialized = false;
 
 $(document).ready(function(){
-    window_width = $(window).width();
+    let window_width = $(window).width();
 
     // check if there is an image set for the sidebar's background
     lbd.checkSidebarImage();
@@ -45,31 +29,32 @@ $('body').on('touchstart.dropdown', '.dropdown-menu', function (e) { e.stopPropa
 });
 
 $(document).on('click', '.navbar-toggle', function(){
-    $toggle = $(this);
+    let $toggle = $(this);
 
-    if(lbd.misc.navbar_menu_visible == 1) {
+    let div;
+    if (lbd.misc.navbar_menu_visible == 1) {
         $('html').removeClass('nav-open');
-       lbd.misc.navbar_menu_visible = 0;
+        lbd.misc.navbar_menu_visible = 0;
         $('#bodyClick').remove();
-        setTimeout(function(){
-           $toggle.removeClass('toggled');
-       }, 550);
+        setTimeout(function () {
+            $toggle.removeClass('toggled');
+        }, 550);
     } else {
-       setTimeout(function(){
-           $toggle.addClass('toggled');
-       }, 580);
-       div = '<div id="bodyClick"></div>';
-       $(div).appendTo('body').click(function() {
-           $('html').removeClass('nav-open');
-           lbd.misc.navbar_menu_visible = 0;
-            setTimeout(function(){
-               $toggle.removeClass('toggled');
-               $('#bodyClick').remove();
+        setTimeout(function () {
+            $toggle.addClass('toggled');
+        }, 580);
+        div = '<div id="bodyClick"></div>';
+        $(div).appendTo('body').click(function () {
+            $('html').removeClass('nav-open');
+            lbd.misc.navbar_menu_visible = 0;
+            setTimeout(function () {
+                $toggle.removeClass('toggled');
+                $('#bodyClick').remove();
             }, 550);
-       });
+        });
 
-      $('html').addClass('nav-open');
-       lbd.misc.navbar_menu_visible = 1;
+        $('html').addClass('nav-open');
+        lbd.misc.navbar_menu_visible = 1;
     }
 });
 
@@ -86,17 +71,25 @@ lbd = {
     },
 
     checkSidebarImage: function(){
-        $sidebar = $('.sidebar');
-        image_src = $sidebar.data('image');
+        let $sidebar = $('.sidebar');
+        let image_src = $sidebar.data('image');
 
-        if(image_src !== undefined){
+        let sidebar_container;
+        if (image_src !== undefined) {
             sidebar_container = '<div class="sidebar-background" style="background-image: url(' + image_src + ') "/>'
             $sidebar.append(sidebar_container);
         }
     },
 
     initRightMenu: debounce(function(){
-        if(!navbar_initialized){
+        let $sidebar_wrapper;
+        let $navbar;
+        let mobile_menu_content;
+        let nav_content;
+        let $sidebar_nav;
+        let $nav_content;
+        let mobile_menu_initialized;
+        if (!navbar_initialized) {
             $sidebar_wrapper = $('.sidebar-wrapper');
             $navbar = $('nav').find('.navbar-collapse').html();
 
@@ -116,14 +109,14 @@ lbd = {
             $nav_content.insertBefore($sidebar_nav);
             // $navbar_form.insertBefore($nav_content);
 
-            $(".sidebar-wrapper .dropdown .dropdown-menu > li > a").click(function(event) {
+            $(".sidebar-wrapper .dropdown .dropdown-menu > li > a").click(function (event) {
                 event.stopPropagation();
 
             });
 
             mobile_menu_initialized = true;
         } else {
-            if($(window).width() > 991){
+            if ($(window).width() > 991) {
                 // reset all the additions that we made for the sidebar wrapper only if the screen is bigger than 991px
                 // $sidebar_wrapper.find('.navbar-form').remove();
                 $sidebar_wrapper.find('.nav-mobile-menu').remove();
@@ -141,10 +134,10 @@ lbd = {
 // leading edge, instead of the trailing.
 
 function debounce(func, wait, immediate) {
-	var timeout;
-	return function() {
-		var context = this, args = arguments;
-		clearTimeout(timeout);
+    let timeout;
+    return function() {
+        const context = this, args = arguments;
+        clearTimeout(timeout);
 		timeout = setTimeout(function() {
 			timeout = null;
 			if (!immediate) func.apply(context, args);
