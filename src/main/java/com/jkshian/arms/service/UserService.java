@@ -12,8 +12,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserService {
 
-    private final UserRepository userRepository;
+    @Autowired
+    private  UserRepository userRepository;
 
+    public void save(User u){userRepository.save(u);}
+    
     public List<User> getAllUsers() {
         List<User> users =userRepository.findAll();
         ResponseEntity.ok();
