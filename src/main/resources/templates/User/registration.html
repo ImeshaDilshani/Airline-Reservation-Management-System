@@ -33,7 +33,7 @@
             <img src="../../static/images/bg.svg" th:src="@{/images/bg.svg}">
         </div>
         <div class="login-content">
-            <form id="registrationForm" th:action="@{/save}" method="post">
+            <form id="registrationForm" >
                 <img src="../../static/images/avatar.svg" th:src="@{/images/avatar.svg}">
                 <h2 class="title">Get started</h2>
                    <div class="input-div one">
@@ -41,7 +41,7 @@
                         <i class="fas fa-user"></i>
                       </div>
                       <div class="div">
-                          <input type="text" class="input" id="firstName" name="firstName" placeholder="First name">
+                          <input type="text" class="input" id="firstname" placeholder="First name">
                       </div>
                    </div>
                 <div class="input-div one">
@@ -49,7 +49,7 @@
                         <i class="fas fa-user"></i>
                     </div>
                     <div class="div">
-                        <input type="text" class="input" id="lastName" name="lastName" placeholder="Last name">
+                        <input type="text" class="input" id="lastname"  placeholder="Last name">
                     </div>
                 </div>
                    <div class="input-div one">
@@ -57,7 +57,7 @@
                             <i class="fa-solid fa-envelope"></i>
                     </div>
                     <div class="div">
-                        <input type="email" class="input" id="email" name="email" placeholder="abc@gmail.com">
+                        <input type="email" class="input" id="email"  placeholder="abc@gmail.com">
                     </div>
                  </div>
                    <div class="input-div pass">
