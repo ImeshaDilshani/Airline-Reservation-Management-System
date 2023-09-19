@@ -128,21 +128,20 @@
                                 <table id="passengerTable" border="1" style="width: 100%;">
                                     <thead>
                                         <tr>
-                                            <th style="text-align: center;" width="100px">User ID</th>
                                             <th style="text-align: center;" width="100px">First Name</th>
                                             <th style="text-align: center;" width="100px">Last Name</th>
                                             <th style="text-align: center;" width="150px">Email</th>
                                         </tr>
+				    </thead>
                                         <tbody>
 						<!-- This is getting details from database-->
-                                            <tr th:each="u: ${users}" >
-                                                <td th:text="$u.id"></td>
-                                                <td th:text="$u.firstname"></td>
-                                                <td th:text="$u.lastname"></td>
-                                                <td th:text="$u.email"></td>
+                                            <tr th:each="u: ${user}" >
+                                                <td th:text="${u.firstName}"></td>
+                                                <td th:text="${u.lastName}"></td>
+                                                <td th:text="${u.email}"></td>
                                             </tr>
                                         </tbody>
-                                    </thead>
+                        
                                 </table>
                                 <div class="footer">
 
