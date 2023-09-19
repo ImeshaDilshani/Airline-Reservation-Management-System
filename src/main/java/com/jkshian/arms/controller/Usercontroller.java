@@ -24,17 +24,17 @@ public class Usercontroller {
 
         return "User/registration";
     }
-    @PostMapping("registration")
-    public String addUser(@ModelAttribute User user)
+    @PostMapping("/save")
+    public String addUser(@ModelAttribute User u)
     {
-        service.save(user);
+        service.save(u);
         return  "redirect:/UserDetails";
     }
 
      @GetMapping("/UserDetails")
     public ModelAndView getAllUsers(){
          List<User> list=service.getAllUsers();
-         return new ModelAndView("UserDetails","users",list);
+         return new ModelAndView("UserDetails","user",list);
 
      }
 
