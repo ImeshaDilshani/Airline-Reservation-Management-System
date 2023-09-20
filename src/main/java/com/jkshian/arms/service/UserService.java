@@ -3,6 +3,7 @@ package com.jkshian.arms.service;
 import com.jkshian.arms.entity.User;
 import com.jkshian.arms.repo.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
