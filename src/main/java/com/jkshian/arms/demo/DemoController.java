@@ -34,7 +34,6 @@ public class DemoController {
 
  @PostMapping("/index")
   public String index(@RequestBody AuthenticationRequest request){
-     System.out.println(request.getEmail());
         if(userService.checkUserRoleIsAdmin(request)){
             return "/Admin/dashboard";
         }else {
