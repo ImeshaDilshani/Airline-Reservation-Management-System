@@ -1,9 +1,6 @@
 package com.jkshian.arms.demo;
 
-import com.jkshian.arms.dto.AuthenticationResponse;
-import com.jkshian.arms.dto.BookingDto;
-import com.jkshian.arms.dto.Planedto;
-import com.jkshian.arms.dto.RegisterRequest;
+import com.jkshian.arms.dto.*;
 import com.jkshian.arms.entity.Booking;
 import com.jkshian.arms.entity.User;
 import com.jkshian.arms.service.AuthenticationService;
@@ -34,10 +31,17 @@ public class DemoController {
         this.bookingService = bookingService;
     }
 
-    @GetMapping("/index")
-    public String index(){
-        return "User/index";
-    }
+
+ @PostMapping("/index")
+  public String index(@RequestBody AuthenticationRequest request){
+     System.out.println(request.getEmail());
+        if(userService.checkUserRoleIsAdmin(request)){
+            return "/Admin/dashboard";
+        }else {
+            return "/User/index";
+        }
+        }
+
 
 
     // Admin only can access this method

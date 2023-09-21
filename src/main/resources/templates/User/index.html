@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.w3.org/1999/xhtml" >
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <title>JKshian</title>
@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
   <!------CSS file link------->
   <link rel="stylesheet" th:href="@{/css/style.css}" href="../../static/css/style.css">
+
 </head>
 
 <body>
@@ -52,37 +53,41 @@
   </h1>
 </section>
 <section class="book-form" id="book-form">
-  <form action="">
+  <form id="bookingForm">
     <div class="inputBox">
                     <span><i class="fa-solid fa-plane-departure"></i> From</span>
-                    <input type="text" placeholder="Place name" value="">
+                    <input type="text" placeholder="Place name" value="" id="bstart">
     </div>
     <div class="inputBox">
                     <span><i class="fa-sharp fa-solid fa-plane-arrival"></i> To</span>
-                    <input type="text" placeholder="Place name" value="">
+                    <input type="text" placeholder="Place name" value="" id="bEnd">
     </div>
-    <div class="inputBox">
-                    <span><i class="fa-solid fa-calendar-days"></i> Departure</span>
-                    <input type="date" >
-    </div>
-    <div class="inputBox">
-      <span><i class="fa-solid fa-calendar-days"></i> Return</span>
-      <input type="date" >
-    </div>
+<!--    <div class="inputBox">-->
+<!--                    <span><i class="fa-solid fa-calendar-days"></i> Departure</span>-->
+<!--                    <input type="date" >-->
+<!--    </div>-->
+<!--    <div class="inputBox">-->
+<!--      <span><i class="fa-solid fa-calendar-days"></i> Return</span>-->
+<!--      <input type="date" >-->
+
     <div class="inputBox">
       <span><i class="fa-solid fa-ticket"></i> Count</span>
-      <input type="number" placeholder=" passengers" value="">
+      <input type="number" placeholder=" passengers" value="" id="numOfSeat">
     </div>
-<!--    <input type="submit"  value="find now" class="btn-2">-->
-    <a href="payment.html" class="btn-2">find now</a>
-  </form>
-  </div>
+
+
+   <button type="button" id="btnclick" class="btn-2" >Check Price</button>
+    <a href="payment.html" class="btn-2" style="visibility: hidden" id="bookNowbtn">Book Now</a>
+    </form>
+
 
 </section>
 <div class="covid">
-  <a href="#" class="btn-3">
-    Check Covid-19 entry requirements
-  </a>
+<!--  <a href="#" class="btn-3">-->
+<!--    Check Covid-19 entry requirements-->
+<!--  </a>-->
+  <br>
+  <br>
 </div>
 <!-----Book section ends------->
 
@@ -122,10 +127,75 @@
   <hr>
   <p class="copyright">Copyright 2023 - JKshian Airlines</p>
 </div>
-<!-----Footer section ends------->
+---Footer section ends-----
 
-<!-----Custom js file link----->
-<script src="js/script.js">
+---Custom js file link---
+<script type="text/javascript">
+
+  function checkPrice() {
+     alert("Clicked Check Price function");
+
+    const formData = {
+      bstart: document.getElementById('bstart').value,
+      bend: document.getElementById('bEnd').value,
+      bnumofseat: document.getElementById('numOfSeat').value,
+      // Add more form fields here as needed
+    };
+
+    const errorMessage = document.getElementById('error-message');
+    const loadingIndicator = document.getElementById('loading-indicator');
+
+    errorMessage.textContent = ''; // Clear any previous error message
+    loadingIndicator.style.display = 'block'; // Show loading indicator
+
+    const jwtToken = localStorage.getItem('jwtToken');
+
+    if (jwtToken) {
+      fetch('http://localhost:8080/api/v1/demo-controller/checkPrice', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${jwtToken}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error('Network response was not ok');
+                }
+                return response.json();
+              })
+              .then(data => {
+                const jwtToken = data.token;
+
+                // Store the JWT token in localStorage
+                localStorage.setItem('jwtToken', jwtToken);
+
+                // redirectToProtectedPage();
+
+              })
+              .catch(error => {
+                errorMessage.textContent = 'Login failed. Please check your credentials.';
+                console.error('Error:', error.message);
+              })
+              .finally(() => {
+                loadingIndicator.style.display = 'none'; // Hide loading indicator
+              });
+    } else {
+      window.location.href = 'http://localhost:8080/api/v1/auth/login';
+    }
+  }
+
+
+  const myBtn = document.getElementById('btnclick');
+  myBtn.addEventListener('click', function (event)
+  {
+    event.preventDefault();
+    checkPrice();
+  }, false);
+
+
 </script>
+
 </body>
 </html>

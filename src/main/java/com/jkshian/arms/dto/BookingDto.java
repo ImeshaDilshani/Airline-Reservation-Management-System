@@ -14,7 +14,7 @@ public class BookingDto {
     private int id;
     private String bstart;
     private String bend;
-    private String useremail;
+//    private String useremail;
     private int bnumofseat;
     private double price;
 

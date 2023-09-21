@@ -2,13 +2,11 @@ package com.jkshian.arms.service;
 
 
 import com.jkshian.arms.dto.BookingDto;
-import com.jkshian.arms.dto.Planedto;
 import com.jkshian.arms.entity.AirPlane;
 import com.jkshian.arms.entity.Booking;
 import com.jkshian.arms.repo.BookingRepo;
 import com.jkshian.arms.repo.PlaneRepo;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -30,8 +28,11 @@ public class BookingService {
         AirPlane findPlane =planeIsAvilable(bookingdto);
         if(findPlane!=null){
               bookingdto.setPrice(calculatePrice(findPlane.getNumOfKm(),bookingdto.getBnumofseat()));
-          }
-        return ResponseEntity.ok(bookingdto.getPrice());
+            return ResponseEntity.ok(bookingdto.getPrice());
+          }else {
+            ResponseEntity.status(401).body("Your enteres plane is not avilable");
+           return null;
+        }
     }
 
     private AirPlane planeIsAvilable(BookingDto bookingdto){
@@ -58,7 +59,7 @@ public class BookingService {
             booking.setBStart(bookingdto.getBstart());
             booking.setBEnd(bookingdto.getBend());
             booking.setBNumOfseat(bookingdto.getBnumofseat());
-            booking.setUserEmail(bookingdto.getUseremail());
+//            booking.setUserEmail(bookingdto.getUseremail());
 
            if(findPlane.getAvlSeat() - bookingdto.getBnumofseat() >= 0){
                bookingRepo.save(booking);
