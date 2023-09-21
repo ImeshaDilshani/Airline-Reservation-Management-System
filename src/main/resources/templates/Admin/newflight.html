@@ -1,0 +1,197 @@
+
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.w3.org/1999/xhtml" >
+<head>
+	<meta charset="UTF-8">
+	<title>JKshian</title>
+	<!-- Bootstrap core CSS     -->
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"  href="../../static/css/bootstrap.min.css">
+	<!-- Animation library for notifications   -->
+	<link rel="stylesheet" th:href="@{/css/animate.min.css}"  href="../../static/css/animate.min.css" >
+	<!--  Light Bootstrap Table core CSS    -->
+	<link rel="stylesheet" th:href="@{/css/light-bootstrap-dashboard.css?v=1.4.0}" href="../../static/css/light-bootstrap-dashboard.css?v=1.4.0" >
+	<!--  CSS for Demo Purpose, don't include it in your project     -->
+	<link rel="stylesheet" th:href="@{/css/demo.css}"  href="../../static/css/demo.css" >
+	<!--     Fonts and icons     -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" th:href="@{/css/pe-icon-7-stroke.css}"  href="../../static/css/pe-icon-7-stroke.css"  >
+</head>
+<body>
+<div class="wrapper">
+	<div class="sidebar" data-color="green" data-image="../static/images/sb2.jpeg" th:data-image="@{/images/sb2.jpeg}" >
+		<div class="sidebar-wrapper">
+			<div class="logo">
+				<a href="https://github.com/ImeshaDilshani/Airline-Reservation-Management-System.git" class="simple-text">
+					<i class="fas fa-plane" aria-hidden="true"></i>
+					JKshian
+				</a>
+			</div>
+			<ul class="nav">
+				<li>
+					<a href="dashboard.html">
+						<i class="fa-solid fa-chart-simple"></i>
+						<p>dashboard</p>
+					</a>
+				</li>
+				<li>
+					<a href="passenger.html">
+						<i class="fa-solid fa-user"></i>
+						<p>Passengers</p>
+					</a>
+				</li>
+				<li class="active">
+					<a href="flights.html">
+						<i class="fa-solid fa-plane"></i>
+						<p>Flights</p>
+					</a>
+				</li>
+				<li>
+					<a href="notifications.html">
+						<i class="fa-regular fa-bell"></i>
+						<p>Notifications</p>
+					</a>
+				</li>
+				<li class="active-pro">
+					<a href="user.html">
+						<i class="fa-solid fa-right-from-bracket"></i>
+						<p>Log Out</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="main-panel">
+		<nav class="navbar navbar-default navbar-fixed">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<div class="collapse navbar-collapse">
+					<ul class="nav navbar-nav navbar-left">
+
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<i class="fa fa-globe"></i>
+								<b class="caret hidden-lg hidden-md"></b>
+								<p class="hidden-lg hidden-md">
+									5 Notifications
+									<b class="caret"></b>
+								</p>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Flight</a></li>
+								<li><a href="#">Booking</a></li>
+								<li><a href="#">Crew</a></li>
+								<li><a href="#">Passenger</a></li>
+								<li><a href="#">Maintenance</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="">
+								<i class="fa fa-search"></i>
+								<p class="hidden-lg hidden-md">Search</p>
+							</a>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a href="user.html">
+								<p>MAndew23</p>
+							</a>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<p>new
+									<b class="caret"></b>
+								</p>
+
+							</a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Flight Updates</a></li>
+								<li><a href="#">Booking Confirmations</a></li>
+								<li><a href="#">Crew Assignments</a></li>
+								<li><a href="#">Payment Status</a></li>
+								<li><a href="#">Task Completion</a></li>
+								<li><a href="#">Seat Availability</a></li>
+								<li><a href="#">Passenger Feedback</a></li>
+							</ul>
+						</li>
+						<li class="separator hidden-lg"></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+			<div id="#myscroll" class="container" style="margin-left: 0;margin-top: 5rem; float: right; width:80%; padding: 0 5rem 0 5rem">
+				<h2>New Flight</h2>
+		  		<hr>
+				<div  style="width: 100%">
+					<div class="panel-group">
+					  	<div class="panel panel-default">
+					    	<div class="panel-heading">
+					    		<legend style="text-align: center;">Flight Information</legend>
+					    	</div>
+
+								<br>
+							<form class="form-inline" action="#" th:action="@{/formSubmit}" method="post" th:object="${stu}">
+								<div class="panel-body">
+									<div class="input-group">
+										<label >Flight No:</label>
+										<input type="text" class="form-control" placeholder="Flight No." name="" required th:field="*{id}">
+									</div>
+									<div>
+										<div class="input-group">
+											<label for="from">From</label>
+											<input type="text" class="form-control" placeholder="Origin" name=""  id="from" required th:field="*{start}">
+										</div>
+										<div class="input-group">
+											<label for="to">To</label>
+											<input type="text" class="form-control" placeholder="Destination" name="" id="to" required th:field="*{end}" >
+										</div>
+									</div>
+									<br>
+									<div>
+										<div class="input-group">
+											<label for="available seats">Available Seats</label>
+											<input type="text" class="form-control"   placeholder="Seats" id="available seats" required th:field="*{avlSeat}">
+										</div>
+										<div class="input-group">
+											<label for="km">Number of Km</label>
+											<input type="text" class="form-control" placeholder="KM" name="" id="km" th:field="*{numOfKm}" >
+										</div>
+									</div>
+								<!--button-->
+								<br>
+								<div>
+									<button type="submit" class="btn btn-primary" style="background-color: dodgerblue;">Submit</button>
+									<div style="text-align: right;">
+										<a th:href="/admin/flights.html">
+											<button class="btn btn-primary" style="background-color: dodgerblue;"> ViewList</button>
+										</a>
+									</div>
+								</div>
+
+								</div>
+							</form>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+	    </div>
+	</div>
+	<footer class="footer">
+		<div class="container-fluid">
+			<p class="copyright pull-right">
+				&copy; <script>document.write(new Date().getFullYear())</script> <a href="https://github.com/ImeshaDilshani/Airline-Reservation-Management-System.git">JKshian</a>, Connecting People, Places, And Cultures.
+			</p>
+		</div>
+	</footer>
+	</body>
+</html>

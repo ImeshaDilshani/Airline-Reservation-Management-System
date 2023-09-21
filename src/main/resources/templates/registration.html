@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>JKshian</title>
+
+   <!------Font awesome cdn link-------->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+   <!------CSS file link------->
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+
+  
+  
+</head>
+
+<body>
+
+   <!-- header section starts  -->
+
+   <header class="header">
+
+    <a href="http://localhost:8080/api/v1/auth/index" class="logo"><i class="fas fa-plane" aria-hidden="true"></i> JKshian</a>
+ 
+    <nav class="navbar" id="MenuItems">
+         
+             <li><a href="index.html">Home</a></li> 
+             <li><a href="index.html">Booking</a></li>
+             <li><a href="">Packages</a></li>
+             <li><a href="contact.html">contact</a></li>
+         
+    </nav>
+    <a href="http://localhost:8080/api/v1/auth/login" class="login"><img src="../static/images/avatar.svg" th:src="@{/images/avatar.svg}" width="30px" height="30px"></a>
+    <img src="../static/images/menu.png" th:src="@{/images/menu.png}" class="menu-icon">
+    </header>
+ 
+
+   <!-----header section ends---->
+
+   <!-----Registration section starts-->
+   
+   <section class="log">
+    <img class="wave" src="../static/images/wave.png" th:src="@{/images/wave.png}">
+    <div class="container">
+        <div class="img">
+            <img src="../static/images/bg.svg" th:src="@{/images/bg.svg}">
+        </div>
+        <div class="login-content">
+            <form id="registrationForm">
+                <img src="../static/images/avatar.svg" th:src="@{/images/avatar.svg}">
+                <h2 class="title">Get started</h2>
+                   <div class="input-div one">
+                      <div class="i">
+                        <i class="fas fa-user"></i>
+                      </div>
+                      <div class="div">
+                          <input type="text" class="input" id="firstname" placeholder="First name">
+                      </div>
+                   </div>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="div">
+                        <input type="text" class="input" id="lastname" placeholder="Last name">
+                    </div>
+                </div>
+                   <div class="input-div one">
+                    <div class="i">
+                            <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div class="div">
+                        <input type="email" class="input" id="email" placeholder="Email address">
+                    </div>
+                 </div>
+
+                   <div class="input-div pass">
+                      <div class="i"> 
+                           <i class="fas fa-lock"></i>
+                      </div>
+                      <div class="div">
+                         <input type="password" class="input" id="password" placeholder="Password">
+                   </div>
+                </div>
+                <input type="submit" class="btn" value="Create an account" >
+                <div id="error-message"></div>
+                <div id="loading-indicator" style="display: none;">Registering...</div>
+            </form>
+        </div>
+    </div>
+ 
+ </section>
+   <!-----Footer section starts----->
+
+
+
+   <div class="footer">
+    
+    <div class="row">
+        <div class="footer-col-1">
+         <h3>About us</h3>
+         <p>Launched in 2023, Sri Lanka’s National Carrier is an award winning airline
+              with a solid reputation for service, comfort, safety, reliability, and punctuality</p>
+        </div>
+        <div class="footer-col-2">
+         <a href="#" class="logo"><i class="fas fa-plane" aria-hidden="true"></i> JKshian</a>
+        </div>
+        <div class="footer-col-3">
+            <h3>Useful Links</h3>
+            <ul>
+                <li>Coupons</li>
+                <li>Blog Post</li>
+                <li>Return Policy</li>
+                <li>Join Affiliate</li>
+            </ul>
+        </div>
+        <div class="footer-col-4">
+            <h3>Follow us</h3>
+            <ul>
+                <li><i class="fa-brands fa-facebook"></i> Facebook</li>
+                <li><i class="fa-brands fa-twitter"></i> Twitter</li>
+                <li><i class="fa-brands fa-instagram"></i> Instagram</li>
+                <li><i class="fa-brands fa-youtube"></i> Youtube</li>
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <p class="copyright">Copyright 2023 - JKshian Airlines</p>
+ </div>
+
+
+ 
+<!-----Footer section ends------->
+   <script type="text/javascript" >
+
+       function handleFormSubmit(event) {
+           event.preventDefault();
+
+           const formData = {
+               firstname: document.getElementById('firstname').value,
+               lastname: document.getElementById('lastname').value,
+               email: document.getElementById('email').value,
+               password: document.getElementById('password').value,
+               // Add more form fields here as needed
+           };
+
+           const errorMessage = document.getElementById('error-message');
+           const loadingIndicator = document.getElementById('loading-indicator');
+
+           errorMessage.textContent = ''; // Clear any previous error message
+           loadingIndicator.style.display = 'block'; // Show loading indicator
+
+           fetch('http://localhost:8080/api/v1/auth/register', {
+               method: 'POST',
+               headers: {
+                   'Content-Type': 'application/json',
+               },
+               body: JSON.stringify(formData),
+           })
+               .then(response => {
+                   if (!response.ok) {
+                       throw new Error('Network response was not ok');
+                   }
+                   return response.json();
+               })
+               .then(data => {
+                   const jwtToken = data.token;
+
+                   // Store the JWT token in localStorage
+                   localStorage.setItem('jwtToken', jwtToken);
+
+                   // Navigate to the new page once the user is authenticated
+                   redirectToProtectedPage();
+               })
+               .catch(error => {
+                   errorMessage.textContent = 'Registration failed. Please check your credentials.';
+                   console.error('Error:', error.message);
+               })
+               .finally(() => {
+                   loadingIndicator.style.display = 'none'; // Hide loading indicator
+               });
+       }
+       function redirectToProtectedPage() {
+           // Check if the JWT token is available in localStorage
+           const jwtToken = localStorage.getItem('jwtToken');
+           if (jwtToken) {
+               fetch('http://localhost:8080/api/v1/demo-controller/index', {
+                   method: 'GET',
+                   headers: {
+                       'Authorization': `Bearer ${jwtToken}`,
+                       'Content-Type': 'application/json',
+                   },
+               })
+                   .then(response => {
+                       if (response.ok) {
+                           // Redirect to the protected page
+                           // window.location.href = 'path/to/protected_page.html';
+                           return response.text();
+                       } else {
+                           // Handle other response statuses here, if needed
+                           console.error('Error:', response.status, response.statusText);
+                       }
+                   })
+                   .then(htmlContent => {
+                       // Render the HTML content in the current page
+                       document.body.innerHTML = htmlContent;
+                   })
+                   .catch(error => {
+                       console.error('Error:', error.message);
+                       // Handle errors here
+                   });
+           } else {
+               // If token is not available, redirect back to the login page
+               window.location.href = 'http://localhost:8080/api/v1/auth/registration';
+           }
+       }
+
+       const loginForm = document.getElementById('registrationForm');
+       loginForm.addEventListener('submit', handleFormSubmit);
+   </script>
+
+
+
+
+<!-----Custom js file link----->
+
+
+
+
+
+
+  <!-----Custom js file link----->
+
+
+</body>
+
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JKshian</title>
+
+  <!------Font awesome cdn link-------->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+  <!------CSS file link------->
+  <link rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}">
+</head>
+
+<body>
+<!-- header section starts  -->
+<header class="header">
+  <a href="#" class="logo"><i class="fas fa-plane" aria-hidden="true"></i> JKshian</a>
+  <nav class="navbar">
+    <a href="index.html">Home</a>
+    <a href="index.html">Booking</a>
+    <a href="contact.html">contact</a>
+  </nav>
+  <a href="http://localhost:8080/api/v1/auth/login" >
+    <img src="../../static/images/avatar.svg" th:src="@{/images/avatar.svg}" width="30px" height="30px"></a>
+</header>
+<section class="log">
+  <img class="wave" src="../../static/images/wave.png" th:src="@{/images/wave.png}">
+
+  <div class="fa-ticket">
+    <h2>Ticket Booking</h2>
+    <form id="bookingForm">
+      <label for="ticketType">Select Ticket Type:</label>
+      <select id="ticketType" name="ticketType">
+        <option value="economy">Economy</option>
+        <option value="business">Business</option>
+      </select>
+
+      <label for="ticketCount">Ticket Count:</label>
+      <input type="number" id="ticketCount" name="ticketCount" min="1" value="1">
+
+      <button type="submit">Proceed to Payment</button>
+    </form>
+
+  </div>
+    <div class="fa-payment">
+      <h2>Payment</h2>
+      <div id="ticketDetails">
+        <p><strong>Selected Ticket Type:</strong> <span id="selectedType"></span></p>
+        <p><strong>Selected Ticket Count:</strong> <span id="selectedCount"></span></p>
+        <p><strong>Total Payment:</strong> $<span id="totalPayment"></span></p>
+      </div>
+      <button type="button" id="backButton">Go Back</button>
+    </div>
+
+
+</section>
+
+
+
+
+
+    <!-----Footer section starts----->
+    <div class="footer">
+      <div class="row">
+        <div class="footer-col-1">
+          <h3>Download Our App</h3>
+          <p>Download App for Android and jos mobile phone.</p>
+          <div class="app-logo">
+            <img src="../../static/images/play-store.png" th:src="@{/images/play-store.png}">
+            <img src="../../static/images/app-store.png" th:src="@{/images/app-store.png}">
+          </div>
+        </div>
+        <div class="footer-col-2">
+          <a href="#" class="logo"><i class="fas fa-plane" aria-hidden="true"></i> JKshian</a>
+        </div>
+        <div class="footer-col-3">
+          <h3>Useful Links</h3>
+          <ul>
+            <li>Coupons</li>
+            <li>Blog Post</li>
+            <li>Return Policy</li>
+            <li>Join Affiliate</li>
+          </ul>
+        </div>
+        <div class="footer-col-4">
+          <h3>Follow us</h3>
+          <ul>
+            <li><i class="fa-brands fa-facebook"></i> Facebook</li>
+            <li><i class="fa-brands fa-twitter"></i> Twitter</li>
+            <li><i class="fa-brands fa-instagram"></i> Instagram</li>
+            <li><i class="fa-brands fa-youtube"></i> Youtube</li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <p class="copyright">Copyright 2023 - JKshian Airlines</p>
+    </div>
+    <!-----Footer section ends------->
+
+    <!-----Custom js file link----->
+    <script type="text/javascript" >
+
+      function handleFormSubmit(event) {
+        event.preventDefault();
+
+        const formData = {
+          email: document.getElementById('username').value,
+          password: document.getElementById('password').value,
+          // Add more form fields here as needed
+        };
+
+        const errorMessage = document.getElementById('error-message');
+        const loadingIndicator = document.getElementById('loading-indicator');
+
+        errorMessage.textContent = ''; // Clear any previous error message
+        loadingIndicator.style.display = 'block'; // Show loading indicator
+
+        fetch('http://localhost:8080/api/v1/auth/authenticate', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        })
+                .then(response => {
+                  if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                  }
+                  return response.json();
+                })
+                .then(data => {
+                  const jwtToken = data.token;
+
+                  // Store the JWT token in localStorage
+                  localStorage.setItem('jwtToken', jwtToken);
+
+                  redirectToProtectedPage();
+
+                })
+                .catch(error => {
+                  errorMessage.textContent = 'Login failed. Please check your credentials.';
+                  console.error('Error:', error.message);
+                })
+                .finally(() => {
+                  loadingIndicator.style.display = 'none'; // Hide loading indicator
+                });
+      }
+      function redirectToProtectedPage() {
+        // Check if the JWT token is available in localStorage
+        const jwtToken = localStorage.getItem('jwtToken');
+        if (jwtToken) {
+          fetch('http://localhost:8080/api/v1/demo-controller/index', {
+            method: 'GET',
+            headers: {
+              'Authorization': `Bearer ${jwtToken}`,
+              'Content-Type': 'application/json',
+            },
+          })
+                  .then(response => {
+                    if (response.ok) {
+                      // Redirect to the protected page
+                      // window.location.href = 'path/to/protected_page.html';
+                      return response.text();
+                    } else {
+                      // Handle other response statuses here, if needed
+                      console.error('Error:', response.status, response.statusText);
+                    }
+                  })
+                  .then(htmlContent => {
+                    // Render the HTML content in the current page
+                    document.body.innerHTML = htmlContent;
+                  })
+                  .catch(error => {
+                    console.error('Error:', error.message);
+                    // Handle errors here
+                  });
+        } else {
+          // If token is not available, redirect back to the login page
+          window.location.href = 'http://localhost:8080/api/v1/auth/login';
+        }
+      }
+      const loginForm = document.getElementById('loginForm');
+      loginForm.addEventListener('submit', handleFormSubmit);
+
+
+      document.getElementById('bookingForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Get the selected ticket type and count
+        const ticketType = document.getElementById('ticketType').value;
+        const ticketCount = document.getElementById('ticketCount').value;
+
+        // Calculate the total payment based on the ticket type
+        let ticketPrice = 0;
+        if (ticketType === 'vip') {
+          ticketPrice = 100;
+        } else if (ticketType === 'standard') {
+          ticketPrice = 75;
+        }
+
+        const totalPayment = ticketPrice * ticketCount;
+
+        // Display the calculation result
+        document.getElementById('ticketDetails').innerHTML = `
+                <p><strong>Selected Ticket Type:</strong> ${ticketType}</p>
+                <p><strong>Selected Ticket Count:</strong> ${ticketCount}</p>
+                <p><strong>Total Payment:</strong> $${totalPayment}</p>
+            `;
+
+        // Show the calculation section and hide the booking section
+        document.querySelector('.booking-section').style.display = 'none';
+        document.querySelector('.calculation-section').style.display = 'block';
+      });
+
+      document.getElementById('backButton').addEventListener('click', function() {
+        // Show the booking section and hide the calculation section
+        document.querySelector('.booking-section').style.display = 'block';
+        document.querySelector('.calculation-section').style.display = 'none';
+      });
+    </script>
+</body>
+</html>
