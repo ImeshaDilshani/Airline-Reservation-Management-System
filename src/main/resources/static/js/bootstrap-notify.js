@@ -68,27 +68,27 @@
 	};
 
 	String.format = function () {
-		var str = arguments[0];
-		for (var i = 1; i < arguments.length; i++) {
+		let str = arguments[0];
+		for (let i = 1; i < arguments.length; i++) {
 			str = str.replace(RegExp("\\{" + (i - 1) + "\\}", "gm"), arguments[i]);
 		}
 		return str;
 	};
 
 	function isDuplicateNotification(notification) {
-		var isDupe = false;
+		let isDupe = false;
 
 		$('[data-notify="container"]').each(function (i, el) {
-			var $el = $(el);
-			var title = $el.find('[data-notify="title"]').text().trim();
-			var message = $el.find('[data-notify="message"]').html().trim();
+			const $el = $(el);
+			const title = $el.find('[data-notify="title"]').text().trim();
+			const message = $el.find('[data-notify="message"]').html().trim();
 
 			// The input string might be different than the actual parsed HTML string!
 			// (<br> vs <br /> for example)
 			// So we have to force-parse this as HTML here!
-			var isSameTitle = title === $("<div>" + notification.settings.content.title + "</div>").html().trim();
-			var isSameMsg = message === $("<div>" + notification.settings.content.message + "</div>").html().trim();
-			var isSameType = $el.hasClass('alert-' + notification.settings.type);
+			const isSameTitle = title === $("<div>" + notification.settings.content.title + "</div>").html().trim();
+			const isSameMsg = message === $("<div>" + notification.settings.content.message + "</div>").html().trim();
+			const isSameType = $el.hasClass('alert-' + notification.settings.type);
 
 			if (isSameTitle && isSameMsg && isSameType) {
 				//we found the dupe. Set the var and stop checking.
@@ -102,7 +102,7 @@
 
 	function Notify(element, content, options) {
 		// Setup Content of Notify
-		var contentObj = {
+		const contentObj = {
 			content: {
 				message: typeof content === 'object' ? content.message : content,
 				title: content.title ? content.title : '',
@@ -138,7 +138,7 @@
 
 	$.extend(Notify.prototype, {
 		init: function () {
-			var self = this;
+			const self = this;
 
 			this.buildNotify();
 			if (this.settings.content.icon) {
@@ -154,13 +154,13 @@
 			this.notify = {
 				$ele: this.$ele,
 				update: function (command, update) {
-					var commands = {};
+					let commands = {};
 					if (typeof command === "string") {
 						commands[command] = update;
 					} else {
 						commands = command;
 					}
-					for (var cmd in commands) {
+					for (const cmd in commands) {
 						switch (cmd) {
 							case "type":
 								this.$ele.removeClass('alert-' + self.settings.type);
@@ -169,7 +169,7 @@
 								this.$ele.addClass('alert-' + commands[cmd]).find('[data-notify="progressbar"] > .progress-bar').addClass('progress-bar-' + commands[cmd]);
 								break;
 							case "icon":
-								var $icon = this.$ele.find('[data-notify="icon"]');
+								const $icon = this.$ele.find('[data-notify="icon"]');
 								if (self.settings.icon_type.toLowerCase() === 'class') {
 									$icon.removeClass(self.settings.content.icon).addClass(commands[cmd]);
 								} else {
@@ -180,7 +180,7 @@
 								}
 								break;
 							case "progress":
-								var newDelay = self.settings.delay - (self.settings.delay * (commands[cmd] / 100));
+								const newDelay = self.settings.delay - (self.settings.delay * (commands[cmd] / 100));
 								this.$ele.data('notify-delay', newDelay);
 								this.$ele.find('[data-notify="progressbar"] > div').attr('aria-valuenow', commands[cmd]).css('width', commands[cmd] + '%');
 								break;
@@ -194,7 +194,7 @@
 								this.$ele.find('[data-notify="' + cmd + '"]').html(commands[cmd]);
 						}
 					}
-					var posX = this.$ele.outerHeight() + parseInt(self.settings.spacing) + parseInt(self.settings.offset.y);
+					const posX = this.$ele.outerHeight() + parseInt(self.settings.spacing) + parseInt(self.settings.offset.y);
 					self.reposition(posX);
 				},
 				close: function () {
@@ -204,7 +204,7 @@
 
 		},
 		buildNotify: function () {
-			var content = this.settings.content;
+			const content = this.settings.content;
 			this.$ele = $(String.format(this.settings.template, this.settings.type, content.title, content.message, content.url, content.target));
 			this.$ele.attr('data-notify-position', this.settings.placement.from + '-' + this.settings.placement.align);
 			if (!this.settings.allow_dismiss) {
@@ -312,7 +312,7 @@
 			}, 600);
 		},
 		bind: function () {
-			var self = this;
+			const self = this;
 
 			this.$ele.find('[data-notify="dismiss"]').on('click', function () {
 				self.close();
@@ -327,7 +327,7 @@
 
 			if (this.settings.delay > 0) {
 				self.$ele.data('notify-delay', self.settings.delay);
-				var timer = setInterval(function () {
+				const timer = setInterval(function () {
 					var delay = parseInt(self.$ele.data('notify-delay')) - self.settings.timer;
 					if ((self.$ele.data('data-hover') === 'false' && self.settings.mouse_over === "pause") || self.settings.mouse_over != "pause") {
 						var percent = ((self.settings.delay - delay) / self.settings.delay) * 100;
@@ -342,7 +342,7 @@
 			}
 		},
 		close: function () {
-			var self = this,
+			let self = this,
 				posX = parseInt(this.$ele.css(this.settings.placement.from)),
 				hasAnimation = false;
 
@@ -372,7 +372,7 @@
 			}, 600);
 		},
 		reposition: function (posX) {
-			var self = this,
+			let self = this,
 				notifies = '[data-notify-position="' + this.settings.placement.from + '-' + this.settings.placement.align + '"]:not([data-closing="true"])',
 				$elements = this.$ele.nextAll(notifies);
 			if (this.settings.newest_on_top === true) {
