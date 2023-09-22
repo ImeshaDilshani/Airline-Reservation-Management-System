@@ -16,4 +16,5 @@ public class Planedto {
     private String end;
     private int avlSeat;
     private double numOfKm;
+
 }

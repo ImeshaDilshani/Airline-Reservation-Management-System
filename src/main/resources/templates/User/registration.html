@@ -163,7 +163,7 @@
            // Check if the JWT token is available in localStorage
            const jwtToken = localStorage.getItem('jwtToken');
            if (jwtToken) {
-               fetch('http://localhost:8080/api/v1/demo-controller/index', {
+               fetch('http://localhost:8080/api/v1/demo-controller/indexForRegistation', {
                    method: 'GET',
                    headers: {
                        'Authorization': `Bearer ${jwtToken}`,

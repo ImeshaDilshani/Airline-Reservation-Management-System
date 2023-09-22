@@ -35,7 +35,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="UserDetails.html">
+					<a href="passenger.html">
 						<i class="fa-solid fa-user"></i>
 						<p>Passengers</p>
 					</a>
@@ -136,43 +136,49 @@
 					    	<div class="panel-heading">
 					    		<legend style="text-align: center;">Flight Information</legend>
 					    	</div>
-					    	<div class="panel-body">
-					    		<div class="input-group">
-									<label >Flight No:</label>
-									<input type="text" class="form-control" placeholder="Flight No." name="" required>
-								</div>
+
 								<br>
-							<form class="form-inline">
+							<form class="form-inline" action="#" th:action="@{/formSubmit}" method="post" th:object="${stu}">
+								<div class="panel-body">
+									<div class="input-group">
+										<label >Flight No:</label>
+										<input type="text" class="form-control" placeholder="Flight No." name="" required th:field="*{id}">
+									</div>
 									<div>
 										<div class="input-group">
 											<label for="from">From</label>
-											<input type="text" class="form-control" placeholder="Origin" name=""  id="from" required>
+											<input type="text" class="form-control" placeholder="Origin" name=""  id="from" required th:field="*{start}">
 										</div>
 										<div class="input-group">
 											<label for="to">To</label>
-											<input type="text" class="form-control" placeholder="Destination" name="" id="to" required>
+											<input type="text" class="form-control" placeholder="Destination" name="" id="to" required th:field="*{end}" >
 										</div>
 									</div>
 									<br>
 									<div>
 										<div class="input-group">
-											<label>Available Seats</label>
-											<input type="text" class="form-control"   placeholder="Seats" id="available seats" required>
+											<label for="available seats">Available Seats</label>
+											<input type="text" class="form-control"   placeholder="Seats" id="available seats" required th:field="*{avlSeat}">
 										</div>
 										<div class="input-group">
-											<label>Number of Km</label>
-											<input type="text" class="form-control" placeholder="KM" name="" id="" >
+											<label for="km">Number of Km</label>
+											<input type="text" class="form-control" placeholder="KM" name="" id="km" th:field="*{numOfKm}" >
 										</div>
 									</div>
 								<!--button-->
 								<br>
-								<div style="text-align: right;">
-									<button type="submit" class="btn btn-primary" style="background-color: dodgerblue;">
-										<a href="flights.html" style="color: white">
-											<i class="fa fa-plus">
-											</i> Add</a></button>
+								<div>
+									<button type="submit" class="btn btn-primary" style="background-color: dodgerblue;">Submit</button>
+									<div style="text-align: right;">
+										<a th:href="/admin/flights.html">
+											<button class="btn btn-primary" style="background-color: dodgerblue;"> ViewList</button>
+										</a>
+									</div>
 								</div>
-                             </form>
+
+								</div>
+							</form>
+
 						</div>
 					</div>
 				</div>

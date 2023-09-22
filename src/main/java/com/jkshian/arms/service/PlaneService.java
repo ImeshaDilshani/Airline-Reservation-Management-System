@@ -61,6 +61,7 @@ public class PlaneService {
         }
     }
 
+
     public List<Planedto> getAllPlane() {
         List<AirPlane> airPlanes = planeRepo.findAll();
         return modelMapper.map(airPlanes, new TypeToken<List<Planedto>>(){}.getType());

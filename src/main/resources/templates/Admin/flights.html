@@ -34,7 +34,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="UserDetails.html">
+                    <a href="passenger.html">
                         <i class="fa-solid fa-user"></i>
                         <p>Passengers</p>
                     </a>
@@ -134,56 +134,28 @@
                         <i class="fa fa-plus"></i> New Flight</a></button>
 				</div>
 				<br>
-			  	<table class="table table-striped table-hover">
-				    <thead>
-					    <tr>
-					    	<th>#</th>
-					        <th>FlightNo</th>
-					        <th>From</th>
-					        <th>To</th>
-					        <th>Available Seats</th>
-					        <th>KM</th>
-					    </tr>
-				    </thead>
-				    <tbody>
-					    <tr>
-					    	<td>1</td>
-					    	<td>4091</td>
-					        <td>Lahore</td>
-					        <td>Karachi</td>
-					        <td>56</td>
-					        <td>200</td>
-					        <td>
-						  	<a href=""><i class="fa fa-pencil"></i></a>
-						  	<a href="#myModal" role="button" data-toggle="modal"><i class="fa fa-trash-o"></i></a>
-					  		</td>
-					    </tr>
-					    <tr>
-					    	<td>2</td>
-					    	<td>1023</td>
-					        <td>Lahore</td>
-					        <td>London</td>
-					        <td>23</td>
-					        <td>300</td>
-					        <td>
-						  	<a href=""><i class="fa fa-pencil"></i></a>
-						  	<a href="#myModal" role="button" data-toggle="modal"><i class="fa fa-trash-o"></i></a>
-					  		</td>
-					    </tr>
-					    <tr>
-					    	<td>3</td>
-					    	<td>1955</td>
-					        <td>Lahore</td>
-					        <td>Canada</td>
-					        <td>13</td>>
-					        <td>150</td>
-					        <td>
-						  	<a href=""><i class="fa fa-pencil"></i></a>
-						  	<a href="#myModal" role="button" data-toggle="modal"><i class="fa fa-trash-o"></i></a>
-					  		</td>
-					    </tr>
-				    </tbody>
-			  </table>
+
+                <br><br>
+                <table>
+                    <tr>
+                        <th>Fight No </th>
+                        <th>From </th>
+                        <th>To </th>
+                        <th>Available Seats </th>
+                        <th>KM </th>
+
+                    </tr>
+
+                    <tr th:each="i:${stuList}">
+
+                        <td th:text="${i.id}"></td>
+                        <td th:text="${i.start}"></td>
+                        <td th:text="${i.end}"></td>
+                        <td th:text="${i.avlSeat}"></td>
+                        <td th:text="${i.numOfKm}"></td>
+
+                    </tr>
+                </table>
 
 				  <ul class="pagination">
 					  <li ><a href="#">&laquo;</a></li>
