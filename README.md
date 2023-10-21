@@ -16,16 +16,19 @@ The Airline Reservation Management System is a web-based application that stream
 - Backend: Java Spring Boot
 - Database: MySql
 
+### Clone the Repository
+```bash
+git clone https://github.com/ImeshaDilshani/Airline-Reservation-Management-System.git
+cd Airline-Reservation-Management-System
+```
+### Database Setup
+Create a MySQL database and import the provided schema to set up the necessary tables.
 
-## Authors
+### Backend Setup
+- Navigate to the backend directory
+- Configure the database connection in the application.properties file.
 
-- [Imesha Dilshani](https://github.com/ImeshaDilshani)
-- [Habishath](https://github.com/habishath)
-- [Nishadi Sasanthika](https://github.com/nishadi260)
-- [Sanudi](https://github.com/SanudiNim)
-- [Ajintha](https://github.com/AjinthaSivam)
-- [Jathurscan](https://github.com/jathurscan99)
-- [Tharindu Lakshan](https://github.com/Tharindu20010110)
+## Access the Application
+Open your web browser and visit ```http://localhost:8080``` to access the Airline Reservation Management System.
 
-## Feedback
-Thank you for using the Airline Reservation Management System! If you have any questions or feedback, please reach out to us at imeshadilshani212@gmail.com
+
