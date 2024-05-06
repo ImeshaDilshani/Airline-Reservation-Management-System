@@ -2,6 +2,9 @@
 
 The Airline Reservation Management System is a web-based application that streamlines the process of flight booking and reservation management. It offers a convenient interface for users to search and book flights, check available seats, manage reservations, and handle cancellations. The system also provides airline administrators with tools to manage flights, seat availability, and passenger information.
 
+![Screenshot (289)](https://github.com/ImeshaDilshani/Airline-Reservation-Management-System/assets/93858302/28855982-352a-4b09-a0a5-d7aa8bcf6c5f)
+
+
 ## Features
 - User Registration and Login: Passengers can create accounts and log in to access the reservation system.
 - Flight Search: Users can search for available flights based on their preferred destinations and travel dates.
